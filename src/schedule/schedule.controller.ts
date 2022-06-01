@@ -12,13 +12,13 @@ export class ScheduleController {
     constructor(private service: ScheduleService) {
     }
 
-    @ApiResponse({type: [IntervalDTO]})
+    @ApiResponse({type: [IntervalDTO], description: 'the schedule created override the previous one'})
     @Post('/interviewer')
     async saveInterviewer(@Body() scheduleDTO: ScheduleDTO): Promise<IntervalDTO[]> {
         return await this.service.saveInterviewerSchedule(scheduleDTO);
     }
 
-    @ApiResponse({type: [IntervalDTO]})
+    @ApiResponse({type: [IntervalDTO], description: 'the schedule created override the previous one'})
     @Post('/candidate')
     async saveCandidate(@Body() scheduleDTO: ScheduleDTO): Promise<IntervalDTO[]> {
         return await this.service.saveCandidateSchedule(scheduleDTO);
