@@ -32,14 +32,15 @@ export class ScheduleController {
         schema: {oneOf: [{type: 'string'}]}
     })
     @ApiParam({
-        name: 'interviewers',
+        name: 'interviewerIds',
         required: true,
-        example: '18f59d10-b146-4540-84bc-1764697e5543, 98d0b396-d56b-4025-99fa-d2a53f6bf572',
+        description: 'The IDs are separated by a comma and no space',
+        example: '18f59d10-b146-4540-84bc-1764697e5543,98d0b396-d56b-4025-99fa-d2a53f6bf572',
         schema: {oneOf: [{type: 'string'}]}
     })
     @ApiResponse({type: AvailabityDTO})
-    @Get('/availability/candidate/:candidateId/interviewers/:interviewers')
-    async get(@Param('candidateId') candidateId: string, @Param('interviewers') interviewers: string): Promise<AvailabityDTO> {
-        return await this.service.getAvailability(candidateId, interviewers?.trim().split(','));
+    @Get('/availability/candidate/:candidateId/interviewers/:interviewerIds')
+    async get(@Param('candidateId') candidateId: string, @Param('interviewerIds') interviewerIds: string): Promise<AvailabityDTO> {
+        return await this.service.getAvailability(candidateId, interviewerIds?.trim().split(','));
     }
 }
